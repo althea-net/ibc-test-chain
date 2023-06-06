@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package icaauth.v1;
+package gaia.icaauth.v1;
 
 
 import "gogoproto/gogo.proto";

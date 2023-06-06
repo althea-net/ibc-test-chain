@@ -1,5 +1,5 @@
 syntax = "proto3";
-package icaauth.v1;
+package gaia.icaauth.v1;
 option go_package = "github.com/althea-net/ibc-test-chain/v9/x/icaauth/types";
 
 import "cosmos_proto/cosmos.proto";
