@@ -19,6 +19,7 @@ func GetQueryCmd() *cobra.Command {
 	}
 
 	cmd.AddCommand(getInterchainAccountCmd())
+	cmd.AddCommand(getInterchainAccountsCmd())
 
 	return cmd
 }
