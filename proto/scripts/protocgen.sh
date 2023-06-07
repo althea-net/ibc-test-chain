@@ -26,5 +26,5 @@ Mgoogle/protobuf/any.proto=github.com/cosmos/cosmos-sdk/codec/types:. \
 done
 
 # move proto files to the right places
-cp -r github.com/cosmos/gaia/x/* x/
+cp -r github.com/althea-net/ibc-test-chain/v9/x/* x/
 rm -rf github.com
