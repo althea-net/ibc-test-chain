@@ -5,6 +5,7 @@ package gaia.icaauth.v1;
 
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
+import "ibc/applications/interchain_accounts/v1/genesis.proto";
 option go_package = "github.com/althea-net/ibc-test-chain/v9/x/icaauth/types";
 
 option (gogoproto.goproto_getters_all)  = false;
@@ -12,10 +13,15 @@ option (gogoproto.equal_all)            = true;
 
 // Query defines the gRPC querier service.
 service Query {
-  // QueryInterchainAccountFromAddress returns the interchain account for given owner address on a given connection pair
+  // QueryInterchainAccountFromAddress returns the interchain account for given owner address on a given connection
   rpc InterchainAccountFromAddress(QueryInterchainAccountFromAddressRequest) returns (QueryInterchainAccountFromAddressResponse) {
-    option (google.api.http).get = "/icaauth/v1/interchain_account/owner/{owner}/connection/{connection_id}";
+    option (google.api.http).get = "/gaia/icaauth/v1/interchain_account/owner/{owner}/connection/{connection_id}";
   };
+  // QueryInterchainAccountsWithConnection returns all the interchain accounts on a given connection
+  rpc InterchainAccountsWithConnection(QueryInterchainAccountsWithConnectionRequest) returns (QueryInterchainAccountsWithConnectionResponse) {
+    option (google.api.http).get = "/gaia/icaauth/v1/interchain_accounts/connection/{connection_id}";
+  };
+
 }
 
 // QueryInterchainAccountFromAddressRequest is the request type for the Query/InterchainAccountAddress RPC
@@ -24,7 +30,17 @@ message QueryInterchainAccountFromAddressRequest {
   string connection_id              = 2 [(gogoproto.moretags) = "yaml:\"connection_id\""];
 }
 
-// QueryInterchainAccountFromAddressResponse the response type for the Query/InterchainAccountAddress RPC
+// QueryInterchainAccountFromAddressResponse the response type for the Query/InterchainAccountFromAddress RPC
 message QueryInterchainAccountFromAddressResponse {
   string interchain_account_address = 1 [(gogoproto.moretags) = "yaml:\"interchain_account_address\""];
+}
+
+// QueryInterchainAccountsWithConnectionRequest is the request type for the Query/InterchainAccountsWithConnection RPC
+message QueryInterchainAccountsWithConnectionRequest {
+  string connection_id              = 1 [(gogoproto.moretags) = "yaml:\"connection_id\""];
+}
+
+// QueryInterchainAccountFromAddressResponse the response type for the Query/InterchainAccountsWithConnection RPC
+message QueryInterchainAccountsWithConnectionResponse {
+  repeated ibc.applications.interchain_accounts.v1.RegisteredInterchainAccount interchain_accounts = 1 [(gogoproto.moretags) = "yaml:\"interchain_accounts\""];
 }
