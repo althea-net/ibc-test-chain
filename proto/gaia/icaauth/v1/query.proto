@@ -42,5 +42,7 @@ message QueryInterchainAccountsWithConnectionRequest {
 
 // QueryInterchainAccountFromAddressResponse the response type for the Query/InterchainAccountsWithConnection RPC
 message QueryInterchainAccountsWithConnectionResponse {
+  option (gogoproto.equal)           = false;
+
   repeated ibc.applications.interchain_accounts.v1.RegisteredInterchainAccount interchain_accounts = 1 [(gogoproto.moretags) = "yaml:\"interchain_accounts\""];
 }
