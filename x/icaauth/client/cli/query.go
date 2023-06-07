@@ -25,7 +25,7 @@ func GetQueryCmd() *cobra.Command {
 
 func getInterchainAccountCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:  "interchainaccounts [account] [connection-id]",
+		Use:  "account [account] [connection-id]",
 		Args: cobra.ExactArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			clientCtx, err := client.GetClientTxContext(cmd)
@@ -35,6 +35,31 @@ func getInterchainAccountCmd() *cobra.Command {
 
 			queryClient := types.NewQueryClient(clientCtx)
 			res, err := queryClient.InterchainAccountFromAddress(cmd.Context(), types.NewQueryInterchainAccountRequest(args[0], args[1]))
+			if err != nil {
+				return err
+			}
+
+			return clientCtx.PrintProto(res)
+		},
+	}
+
+	flags.AddQueryFlagsToCmd(cmd)
+
+	return cmd
+}
+
+func getInterchainAccountsCmd() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:  "accounts [connection-id]",
+		Args: cobra.ExactArgs(1),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			clientCtx, err := client.GetClientTxContext(cmd)
+			if err != nil {
+				return err
+			}
+
+			queryClient := types.NewQueryClient(clientCtx)
+			res, err := queryClient.InterchainAccountsWithConnection(cmd.Context(), &types.QueryInterchainAccountsWithConnectionRequest{ConnectionId: args[0]})
 			if err != nil {
 				return err
 			}
