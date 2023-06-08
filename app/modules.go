@@ -56,6 +56,9 @@ import (
 
 	gaiaappparams "github.com/althea-net/ibc-test-chain/v9/app/params"
 	"github.com/althea-net/ibc-test-chain/v9/x/globalfee"
+	// "github.com/althea-net/ibc-test-chain/v9/x/intertx"
+	// intertxkeeper "github.com/althea-net/ibc-test-chain/v9/x/intertx/keeper"
+	// intertxtypes "github.com/althea-net/ibc-test-chain/v9/x/intertx/types"
 )
 
 var maccPerms = map[string][]string{
@@ -106,7 +109,7 @@ var ModuleBasics = module.NewBasicManager(
 	liquidity.AppModuleBasic{},
 	router.AppModuleBasic{},
 	ica.AppModuleBasic{},
-	icaauth.AppModuleBasic{},
+	// intertx.AppModuleBasic{},
 	globalfee.AppModule{},
 	ibcprovider.AppModuleBasic{},
 )

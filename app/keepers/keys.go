@@ -37,6 +37,7 @@ func (appKeepers *AppKeepers) GenerateKeys() {
 		evidencetypes.StoreKey, liquiditytypes.StoreKey, ibctransfertypes.StoreKey,
 		capabilitytypes.StoreKey, feegrant.StoreKey, authzkeeper.StoreKey, routertypes.StoreKey,
 		icahosttypes.StoreKey, providertypes.StoreKey, icacontrollertypes.StoreKey, icaauthtypes.StoreKey,
+		// intertxtypes.StoreKey,
 	)
 
 	// Define transient store keys

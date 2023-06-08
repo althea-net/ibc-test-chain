@@ -96,11 +96,12 @@ type AppKeepers struct {
 	ICAControllerKeeper icacontrollerkeeper.Keeper
 	ICAHostKeeper       icahostkeeper.Keeper
 	ICAAuthKeeper       icaauthkeeper.Keeper
-	EvidenceKeeper      evidencekeeper.Keeper
-	TransferKeeper      ibctransferkeeper.Keeper
-	FeeGrantKeeper      feegrantkeeper.Keeper
-	AuthzKeeper         authzkeeper.Keeper
-	LiquidityKeeper     liquiditykeeper.Keeper
+	// IntertxKeeper       intertxkeeper.Keeper
+	EvidenceKeeper  evidencekeeper.Keeper
+	TransferKeeper  ibctransferkeeper.Keeper
+	FeeGrantKeeper  feegrantkeeper.Keeper
+	AuthzKeeper     authzkeeper.Keeper
+	LiquidityKeeper liquiditykeeper.Keeper
 
 	// ICS
 	ProviderKeeper ibcproviderkeeper.Keeper
@@ -108,7 +109,9 @@ type AppKeepers struct {
 	RouterKeeper *routerkeeper.Keeper
 
 	// Modules
-	ICAModule        ica.AppModule
+	ICAModule ica.AppModule
+	// IntertxModule    intertx.AppModule
+	// IntertxIBCModule intertx.IBCModule
 	ICAAuthModule    icaauth.AppModule
 	ICAHostIBCModule icahost.IBCModule
 	ICAAuthIBCModule icaauth.IBCModule
@@ -122,7 +125,8 @@ type AppKeepers struct {
 	ScopedICAControllerKeeper capabilitykeeper.ScopedKeeper
 	ScopedICAHostKeeper       capabilitykeeper.ScopedKeeper
 	ScopedICAAuthKeeper       capabilitykeeper.ScopedKeeper
-	ScopedIBCProviderKeeper   capabilitykeeper.ScopedKeeper
+	// ScopedIntertxKeeper       capabilitykeeper.ScopedKeeper
+	ScopedIBCProviderKeeper capabilitykeeper.ScopedKeeper
 }
 
 func NewAppKeeper(
@@ -169,6 +173,7 @@ func NewAppKeeper(
 	appKeepers.ScopedICAControllerKeeper = appKeepers.CapabilityKeeper.ScopeToModule(icacontrollertypes.SubModuleName)
 	appKeepers.ScopedICAHostKeeper = appKeepers.CapabilityKeeper.ScopeToModule(icahosttypes.SubModuleName)
 	appKeepers.ScopedICAAuthKeeper = appKeepers.CapabilityKeeper.ScopeToModule(icaauthtypes.ModuleName)
+	// appKeepers.ScopedIntertxKeeper = appKeepers.CapabilityKeeper.ScopeToModule(intertxtypes.ModuleName)
 	appKeepers.ScopedIBCProviderKeeper = appKeepers.CapabilityKeeper.ScopeToModule(providertypes.ModuleName)
 
 	appKeepers.CapabilityKeeper.Seal()
@@ -390,6 +395,13 @@ func NewAppKeeper(
 
 	appKeepers.ICAModule = ica.NewAppModule(&appKeepers.ICAControllerKeeper, &appKeepers.ICAHostKeeper)
 	icaControllerStack := icacontroller.NewIBCMiddleware(appKeepers.ICAAuthIBCModule, appKeepers.ICAControllerKeeper)
+	// With the intertx module:
+	// appKeepers.IntertxKeeper = intertxkeeper.NewKeeper(appCodec, appKeepers.GetKey(intertxtypes.StoreKey), appKeepers.ICAControllerKeeper, appKeepers.ScopedIntertxKeeper)
+	// appKeepers.IntertxModule = intertx.NewAppModule(appCodec, appKeepers.IntertxKeeper)
+	// appKeepers.IntertxIBCModule = intertx.NewIBCModule(appKeepers.IntertxKeeper)
+
+	// icaControllerStack := icacontroller.NewIBCMiddleware(appKeepers.IntertxIBCModule, appKeepers.ICAControllerKeeper)
+
 	appKeepers.ICAHostIBCModule = icahost.NewIBCModule(appKeepers.ICAHostKeeper)
 
 	appKeepers.RouterModule = router.NewAppModule(appKeepers.RouterKeeper)
@@ -406,9 +418,9 @@ func NewAppKeeper(
 
 	// create static IBC router, add transfer route, then set and seal it
 	ibcRouter := porttypes.NewRouter().
+		AddRoute(icaauthtypes.ModuleName, icaControllerStack).
 		AddRoute(icacontrollertypes.SubModuleName, icaControllerStack).
 		AddRoute(icahosttypes.SubModuleName, appKeepers.ICAHostIBCModule).
-		AddRoute(icaauthtypes.ModuleName, appKeepers.ICAAuthIBCModule).
 		AddRoute(ibctransfertypes.ModuleName, ibcTransferStack).
 		AddRoute(providertypes.ModuleName, appKeepers.ProviderModule)
 
