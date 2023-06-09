@@ -34,6 +34,8 @@ require (
 	github.com/regen-network/cosmos-proto v0.3.1
 )
 
+require github.com/ethereum/go-ethereum v1.10.17 // indirect
+
 require (
 	4d63.com/gochecknoglobals v0.1.0 // indirect
 	cosmossdk.io/api v0.2.6 // indirect
@@ -51,6 +53,7 @@ require (
 	github.com/DataDog/zstd v1.5.0 // indirect
 	github.com/Djarvur/go-err113 v0.1.0 // indirect
 	github.com/GaijinEntertainment/go-exhaustruct/v2 v2.3.0 // indirect
+	github.com/Gravity-Bridge/Gravity-Bridge/module v1.4.1
 	github.com/HdrHistogram/hdrhistogram-go v1.1.2 // indirect
 	github.com/Masterminds/semver v1.5.0 // indirect
 	github.com/Microsoft/go-winio v0.6.0 // indirect
