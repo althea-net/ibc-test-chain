@@ -2,10 +2,28 @@ module github.com/althea-net/ibc-test-chain/v9
 
 go 1.19
 
+// Version locks
+replace (
+	// Gravity apparently broke go requirements by not having a go.mod in the root of the repo, this is the top commit on the main-fix branch
+	// This can be removed once Gravity has a fixed release version
+	github.com/Gravity-Bridge/Gravity-Bridge/module => github.com/Gravity-Bridge/Gravity-Bridge/module v1.4.2-0.20230609210540-bbe3d59b8de6
+
+	// Do not advance past v0.45.15-ics
+	github.com/cosmos/cosmos-sdk => github.com/cosmos/cosmos-sdk v0.45.15-ics
+
+	github.com/cosmos/ibc-go/v4 => github.com/cosmos/ibc-go/v4 v4.3.1
+)
+
+// Version locks
 require (
+	github.com/Gravity-Bridge/Gravity-Bridge/module v1.4.1
 	github.com/cosmos/cosmos-sdk v0.45.15-ics
-	github.com/cosmos/go-bip39 v1.0.0
 	github.com/cosmos/ibc-go/v4 v4.3.1
+)
+
+require (
+	cosmossdk.io/math v1.0.0-beta.4
+	github.com/cosmos/go-bip39 v1.0.0
 	github.com/cosmos/interchain-security v1.1.0
 	github.com/gogo/protobuf v1.3.3
 	github.com/golang/protobuf v1.5.2
@@ -13,8 +31,10 @@ require (
 	github.com/gorilla/mux v1.8.0
 	github.com/gravity-devs/liquidity v1.5.3
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0
+	github.com/ory/dockertest/v3 v3.9.1
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/rakyll/statik v0.1.7
+	github.com/regen-network/cosmos-proto v0.3.1
 	github.com/spf13/cast v1.5.0
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/pflag v1.0.5 // indirect
@@ -27,14 +47,7 @@ require (
 	google.golang.org/grpc v1.52.3
 )
 
-require (
-	cosmossdk.io/math v1.0.0-beta.4
-	github.com/cosmos/gaia/v9 v9.1.1
-	github.com/ory/dockertest/v3 v3.9.1
-	github.com/regen-network/cosmos-proto v0.3.1
-)
-
-require github.com/ethereum/go-ethereum v1.10.17 // indirect
+require github.com/ethereum/go-ethereum v1.10.19 // indirect
 
 require (
 	4d63.com/gochecknoglobals v0.1.0 // indirect
@@ -53,7 +66,6 @@ require (
 	github.com/DataDog/zstd v1.5.0 // indirect
 	github.com/Djarvur/go-err113 v0.1.0 // indirect
 	github.com/GaijinEntertainment/go-exhaustruct/v2 v2.3.0 // indirect
-	github.com/Gravity-Bridge/Gravity-Bridge/module v1.4.1
 	github.com/HdrHistogram/hdrhistogram-go v1.1.2 // indirect
 	github.com/Masterminds/semver v1.5.0 // indirect
 	github.com/Microsoft/go-winio v0.6.0 // indirect
@@ -62,6 +74,7 @@ require (
 	github.com/Workiva/go-datastructures v1.0.53 // indirect
 	github.com/alexkohler/prealloc v1.0.0 // indirect
 	github.com/alingse/asasalint v0.0.11 // indirect
+	github.com/althea-net/bech32-ibc v0.4.5 // indirect
 	github.com/armon/go-metrics v0.4.1 // indirect
 	github.com/ashanbrown/forbidigo v1.3.0 // indirect
 	github.com/ashanbrown/makezero v1.1.1 // indirect
@@ -192,7 +205,7 @@ require (
 	github.com/ldez/gomoddirectives v0.2.3 // indirect
 	github.com/ldez/tagliatelle v0.3.1 // indirect
 	github.com/leonklingele/grouper v1.1.0 // indirect
-	github.com/lib/pq v1.10.6 // indirect
+	github.com/lib/pq v1.10.7 // indirect
 	github.com/libp2p/go-buffer-pool v0.1.0 // indirect
 	github.com/linxGnu/grocksdb v1.7.10 // indirect
 	github.com/lufeee/execinquery v1.2.1 // indirect
@@ -317,9 +330,6 @@ replace (
 
 	// dragonberry
 	github.com/confio/ics23/go => github.com/confio/ics23/go v0.9.0
-
-	// Cosmos SDK & IBC
-	github.com/cosmos/cosmos-sdk => github.com/cosmos/cosmos-sdk v0.45.15-ics
 
 	// replace ICS with multisig and distribution fix
 	github.com/cosmos/interchain-security => github.com/cosmos/interchain-security v1.1.0-multiden
