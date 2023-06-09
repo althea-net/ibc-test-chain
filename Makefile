@@ -74,17 +74,11 @@ ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=gaia \
 ifeq (cleveldb,$(findstring cleveldb,$(GAIA_BUILD_OPTIONS)))
   ldflags += -X github.com/cosmos/cosmos-sdk/types.DBBackend=cleveldb
 endif
-ifeq (,$(findstring nostrip,$(GAIA_BUILD_OPTIONS)))
-  ldflags += -w -s
-endif
+
 ldflags += $(LDFLAGS)
 ldflags := $(strip $(ldflags))
 
-BUILD_FLAGS := -tags "$(build_tags)" -ldflags '$(ldflags)'
-# check for nostrip option
-ifeq (,$(findstring nostrip,$(GAIA_BUILD_OPTIONS)))
-  BUILD_FLAGS += -trimpath
-endif
+BUILD_FLAGS := -tags "$(build_tags)" -ldflags '$(ldflags)' -gcflags="all=-N -l"
 
 #$(info $$BUILD_FLAGS is [$(BUILD_FLAGS)])
 
