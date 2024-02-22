@@ -8,7 +8,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/msgservice"
 
+	erc20types "github.com/Canto-Network/Canto/v5/x/erc20/types"
 	gravitytypes "github.com/Gravity-Bridge/Gravity-Bridge/module/x/gravity/types"
+	microtxtypes "github.com/althea-net/althea-L1/x/microtx/types"
+	evmtypes "github.com/evmos/ethermint/x/evm/types"
 )
 
 func RegisterCodec(cdc *codec.LegacyAmino) {
@@ -26,6 +29,7 @@ func registerLocalAmino(cdc *codec.LegacyAmino) {
 // Note: Include any modules here the chain should control which are not running on this chain
 func registerForeignAminos(cdc *codec.LegacyAmino) {
 	gravitytypes.RegisterCodec(cdc)
+	microtxtypes.RegisterCodec(cdc)
 }
 
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
@@ -48,6 +52,9 @@ func registerLocalInterfaces(registry cdctypes.InterfaceRegistry) {
 // Note: Include any modules here the chain should control which are not running on this chain
 func registerForeignInterfaces(registry cdctypes.InterfaceRegistry) {
 	gravitytypes.RegisterInterfaces(registry)
+	microtxtypes.RegisterInterfaces(registry)
+	evmtypes.RegisterInterfaces(registry)
+	erc20types.RegisterInterfaces(registry)
 }
 
 var (
