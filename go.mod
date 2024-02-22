@@ -4,28 +4,28 @@ go 1.19
 
 // Version locks
 replace (
+
+	github.com/Canto-Network/Canto/v5 => github.com/althea-net/canto/v5 v5.1.0
 	// Gravity apparently broke go requirements by not having a go.mod in the root of the repo, this is the top commit on the main-fix branch
 	// This can be removed once Gravity has a fixed release version
 	github.com/Gravity-Bridge/Gravity-Bridge/module => github.com/Gravity-Bridge/Gravity-Bridge/module v1.4.2-0.20230609210540-bbe3d59b8de6
 
-	github.com/althea-net/althea-L1 => github.com/althea-net/althea-L1 v0.5.6
+	github.com/althea-net/althea-L1 => github.com/althea-net/althea-L1 v0.5.7
 	// Do not advance past v0.45.15-ics
 	github.com/cosmos/cosmos-sdk => github.com/cosmos/cosmos-sdk v0.45.15-ics
 
 	github.com/cosmos/ibc-go/v4 => github.com/cosmos/ibc-go/v4 v4.3.1
 
 	github.com/evmos/ethermint => github.com/althea-net/ethermint v0.19.5
-
-	github.com/Canto-Network/Canto/v5 => github.com/althea-net/canto/v5 v5.1.0
 )
 
 // Version locks
 require (
+	github.com/Canto-Network/Canto/v5 v5.1.0
 	github.com/Gravity-Bridge/Gravity-Bridge/module v1.4.1
+	github.com/althea-net/althea-L1 v0.5.7
 	github.com/cosmos/cosmos-sdk v0.45.16
 	github.com/cosmos/ibc-go/v4 v4.3.1
-	github.com/althea-net/althea-L1 v0.5.6
-	github.com/Canto-Network/Canto/v5 v5.1.0
 )
 
 require (
@@ -54,8 +54,9 @@ require (
 	google.golang.org/grpc v1.54.0
 )
 
+require github.com/evmos/ethermint v0.19.5
+
 require (
-	github.com/ethereum/go-ethereum v1.10.19 // indirect
 	4d63.com/gochecknoglobals v0.1.0 // indirect
 	cosmossdk.io/api v0.2.6 // indirect
 	cosmossdk.io/core v0.5.1 // indirect
@@ -133,8 +134,8 @@ require (
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/dvsekhvalnov/jose2go v1.5.0 // indirect
 	github.com/esimonov/ifshort v1.0.4 // indirect
+	github.com/ethereum/go-ethereum v1.10.19 // indirect
 	github.com/ettle/strcase v0.1.1 // indirect
-	github.com/evmos/ethermint v0.19.5 // indirect
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
 	github.com/felixge/httpsnoop v1.0.2 // indirect

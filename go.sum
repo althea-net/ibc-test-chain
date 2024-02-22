@@ -626,6 +626,8 @@ github.com/allegro/bigcache v1.2.1-0.20190218064605-e24eb225f156/go.mod h1:Cb/ax
 github.com/althea-net/Canto/v5 v5.1.0/go.mod h1:RKjv2UcnriFrgU+BrestQLeCUXW2aqX36oCmzqf6POA=
 github.com/althea-net/althea-L1 v0.5.6 h1:iGiSb1b6XXo+Z8wIoOi6ic8ek8esMOIpmTQHnKq9MDA=
 github.com/althea-net/althea-L1 v0.5.6/go.mod h1:6a+K7u+eOC8hRDL+r3pGidoEQfT+u3lz248MUH4WLco=
+github.com/althea-net/althea-L1 v0.5.7 h1:O01WbmXckrOGmkhcjUjmnM795B67oYmAUvwPRUcvTrM=
+github.com/althea-net/althea-L1 v0.5.7/go.mod h1:6a+K7u+eOC8hRDL+r3pGidoEQfT+u3lz248MUH4WLco=
 github.com/althea-net/althea-chain v0.5.5 h1:884ltEgTpAXPPTjyC2e/ebVzuyamHT612gtPiPY2TlM=
 github.com/althea-net/althea-chain v0.5.5/go.mod h1:uzblAkoinuMo1ZkCswq0l0dnqAixTGZhpLklYvj6zLQ=
 github.com/althea-net/bech32-ibc v0.4.5 h1:eSa/SXETkXPCZJGCkAVj/shKtHnPCs3dHFBx3XzU+G4=
