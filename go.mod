@@ -4,13 +4,12 @@ go 1.19
 
 // Version locks
 replace (
-
-	github.com/Canto-Network/Canto/v5 => github.com/althea-net/canto/v5 v5.1.0
+	github.com/Canto-Network/Canto/v5 => github.com/althea-net/canto/v5 v5.1.1
 	// Gravity apparently broke go requirements by not having a go.mod in the root of the repo, this is the top commit on the main-fix branch
 	// This can be removed once Gravity has a fixed release version
 	github.com/Gravity-Bridge/Gravity-Bridge/module => github.com/Gravity-Bridge/Gravity-Bridge/module v1.4.2-0.20230609210540-bbe3d59b8de6
 
-	github.com/althea-net/althea-L1 => github.com/althea-net/althea-L1 v0.5.7
+	github.com/althea-net/althea-L1 => github.com/althea-net/althea-L1 v1.0.0-rc1-proto
 	// Do not advance past v0.45.15-ics
 	github.com/cosmos/cosmos-sdk => github.com/cosmos/cosmos-sdk v0.45.15-ics
 
@@ -21,9 +20,9 @@ replace (
 
 // Version locks
 require (
-	github.com/Canto-Network/Canto/v5 v5.1.0
+	github.com/Canto-Network/Canto/v5 v5.1.1
 	github.com/Gravity-Bridge/Gravity-Bridge/module v1.4.1
-	github.com/althea-net/althea-L1 v0.5.7
+	github.com/althea-net/althea-L1 v1.0.0-rc1-proto
 	github.com/cosmos/cosmos-sdk v0.45.16
 	github.com/cosmos/ibc-go/v4 v4.3.1
 )
